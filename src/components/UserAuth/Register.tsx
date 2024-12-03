@@ -1,5 +1,11 @@
+import { Button } from "@/components/ui/button";
+
 const Register = () => {
-  return <div>Register</div>;
+  return (
+    <>
+      <Button>New Button</Button>
+    </>
+  );
 };
 
 export default Register;

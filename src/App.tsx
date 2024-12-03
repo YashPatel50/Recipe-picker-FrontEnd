@@ -1,9 +1,9 @@
-import TestApi from "./components/TestApi";
+import Register from "./components/UserAuth/Register";
 
 function App() {
   return (
     <>
-      <TestApi />
+      <Register />
     </>
   );
 }
