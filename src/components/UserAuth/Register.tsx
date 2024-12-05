@@ -38,7 +38,7 @@ const Register = () => {
         justifyContent={"center"}
       >
         <Box
-          bg="gray.800"
+          background="gray.800"
           width="50%"
           height="70%"
           padding={10}
@@ -48,8 +48,9 @@ const Register = () => {
           <form onSubmit={handleSubmit((data) => console.log(data))}>
             <Stack>
               <h1>Register</h1>
-              <Field label="Username" required>
+              <Field label="Username" aria-required>
                 <Input
+                  outlineColor={"blue"}
                   {...register("username")}
                   placeholder="Enter Username"
                 ></Input>
@@ -57,8 +58,9 @@ const Register = () => {
                   <p className="text-danger">{errors.username.message}</p>
                 )}
               </Field>
-              <Field label="Password" required>
+              <Field label="Password" aria-required>
                 <Input
+                  colorPalette="secondary"
                   {...register("password")}
                   placeholder="Enter Password"
                 ></Input>
@@ -66,14 +68,10 @@ const Register = () => {
                   <p className="text-danger">{errors.password.message}</p>
                 )}
               </Field>
-              <Button
-                disabled={!isValid}
-                mt={4}
-                colorScheme="teal"
-                type="submit"
-              >
+              <Button color="primary" disabled={!isValid} type="submit">
                 Submit
               </Button>
+              <Button color="blue.500">Cheers</Button>
             </Stack>
           </form>
         </Box>
