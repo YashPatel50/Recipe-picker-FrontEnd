@@ -1,4 +1,13 @@
-import { Box, Button, Flex, Input, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Show,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { Center } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
@@ -8,13 +17,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const schema = z.object({
   username: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/, {
     message:
-      "Username must be 8-20 characters. At least 1 Letter. At least 1 Number.  No Special characters",
+      "Username must be 8-20 characters.\nAt least 1 Letter.\nAt least 1 Number.\nNo Special characters",
   }),
   password: z
     .string()
     .regex(/^(?=.*[A-Z])(?=.*[\W_])(?=.*\d)[A-Za-z\d\W_]{8,20}$/, {
       message:
-        "Password must be 8-20 characters long, include at least one uppercase letter, one special character, and one number.",
+        "Password must be 8-20 characters.\nAt least 1 Letter.\nAt least 1 Number.\nAt least 1 Capital Letter.\nAt least 1 special character",
     }),
 });
 
@@ -48,26 +57,32 @@ const Register = () => {
         >
           <form onSubmit={handleSubmit((data) => console.log(data))}>
             <Stack>
-              Register
-              <Field label="Username" aria-required required>
+              <Heading size={"2xl"} paddingBottom={4}>
+                Register
+              </Heading>
+              <Field label="Username" paddingBottom={4} aria-required required>
                 <Input
                   borderColor="borderColor.primary"
                   {...register("username")}
                   placeholder="Enter Username"
                 ></Input>
-                {errors.username && (
-                  <p className="text-danger">{errors.username.message}</p>
-                )}
+                <Show when={errors.username}>
+                  <Text color={"text-error"} whiteSpace="pre-line">
+                    {errors.username?.message}
+                  </Text>
+                </Show>
               </Field>
-              <Field label="Password" aria-required required>
+              <Field label="Password" paddingBottom={4} aria-required required>
                 <Input
                   borderColor="borderColor.primary"
                   {...register("password")}
                   placeholder="Enter Password"
                 ></Input>
-                {errors.password && (
-                  <p className="text-danger">{errors.password.message}</p>
-                )}
+                <Show when={errors.password}>
+                  <Text color={"text-error"} whiteSpace="pre-line">
+                    {errors.password?.message}
+                  </Text>
+                </Show>
               </Field>
               <Button color="primary" disabled={!isValid} type="submit">
                 Submit

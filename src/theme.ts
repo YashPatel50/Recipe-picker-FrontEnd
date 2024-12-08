@@ -7,6 +7,9 @@ const customConfig = defineConfig({
         borderColor: {
           primary: { value: {_light: "gray.200", _dark: "white" }},
         },
+        'text-error': {
+          value: '#ff3333'
+        }
       },
     },
   },
