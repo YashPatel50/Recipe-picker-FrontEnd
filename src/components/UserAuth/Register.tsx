@@ -47,10 +47,10 @@ const Register = () => {
         >
           <form onSubmit={handleSubmit((data) => console.log(data))}>
             <Stack>
-              <h1>Register</h1>
+              Register
               <Field label="Username" aria-required>
                 <Input
-                  outlineColor={"blue"}
+                  borderColor="borderColor.primary"
                   {...register("username")}
                   placeholder="Enter Username"
                 ></Input>
@@ -60,7 +60,7 @@ const Register = () => {
               </Field>
               <Field label="Password" aria-required>
                 <Input
-                  colorPalette="secondary"
+                  borderColor="borderColor.primary"
                   {...register("password")}
                   placeholder="Enter Password"
                 ></Input>
