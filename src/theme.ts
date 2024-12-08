@@ -5,11 +5,8 @@ const customConfig = defineConfig({
     semanticTokens: {
       colors: {
         borderColor: {
-          primary: { value: "white" },
+          primary: { value: {_light: "gray.200", _dark: "white" }},
         },
-        bg: {
-          primary: {value: 'red'}
-        }
       },
     },
   },
