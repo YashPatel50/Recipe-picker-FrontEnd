@@ -27,6 +27,7 @@ const Register = () => {
     formState: { errors, isValid },
   } = useForm<LoginFormData>({
     resolver: zodResolver(schema),
+    mode: "onChange",
   });
 
   return (
@@ -48,7 +49,7 @@ const Register = () => {
           <form onSubmit={handleSubmit((data) => console.log(data))}>
             <Stack>
               Register
-              <Field label="Username" aria-required>
+              <Field label="Username" aria-required required>
                 <Input
                   borderColor="borderColor.primary"
                   {...register("username")}
@@ -58,7 +59,7 @@ const Register = () => {
                   <p className="text-danger">{errors.username.message}</p>
                 )}
               </Field>
-              <Field label="Password" aria-required>
+              <Field label="Password" aria-required required>
                 <Input
                   borderColor="borderColor.primary"
                   {...register("password")}
@@ -71,7 +72,6 @@ const Register = () => {
               <Button color="primary" disabled={!isValid} type="submit">
                 Submit
               </Button>
-              <Button color="blue.500">Cheers</Button>
             </Stack>
           </form>
         </Box>
