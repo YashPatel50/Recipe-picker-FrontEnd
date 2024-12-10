@@ -62,6 +62,7 @@ const Register = () => {
               </Heading>
               <Field label="Username" paddingBottom={4} aria-required required>
                 <Input
+                  type="text"
                   borderColor="borderColor.primary"
                   {...register("username")}
                   placeholder="Enter Username"
@@ -74,6 +75,7 @@ const Register = () => {
               </Field>
               <Field label="Password" paddingBottom={4} aria-required required>
                 <Input
+                  type="password"
                   borderColor="borderColor.primary"
                   {...register("password")}
                   placeholder="Enter Password"
