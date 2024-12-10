@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { Center } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -33,11 +33,17 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<LoginFormData>({
     resolver: zodResolver(schema),
     mode: "onChange",
   });
+
+  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+    console.log(data);
+    reset();
+  };
 
   return (
     <Flex>
@@ -55,7 +61,7 @@ const Register = () => {
           rounded={30}
           shadow={"sm"}
         >
-          <form onSubmit={handleSubmit((data) => console.log(data))}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Stack>
               <Heading size={"2xl"} paddingBottom={4}>
                 Register
