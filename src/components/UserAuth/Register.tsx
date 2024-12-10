@@ -46,59 +46,59 @@ const Register = () => {
   };
 
   return (
-    <Flex>
-      <Center
-        width={"100vw"}
-        height={"100vh"}
-        alignContent={"center"}
-        justifyContent={"center"}
+    <Flex
+      width="100vw"
+      height="100vh"
+      justify="center"
+      align="flex-start" // Align to the top
+      paddingTop="20vh"
+    >
+      <Box
+        background="gray.800"
+        width="50%"
+        height="40%"
+        padding={10}
+        rounded={30}
+        shadow={"sm"}
+        maxWidth="600px"
       >
-        <Box
-          background="gray.800"
-          width="50%"
-          height="70%"
-          padding={10}
-          rounded={30}
-          shadow={"sm"}
-        >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack>
-              <Heading size={"2xl"} paddingBottom={4}>
-                Register
-              </Heading>
-              <Field label="Username" paddingBottom={4} aria-required required>
-                <Input
-                  type="text"
-                  borderColor="borderColor.primary"
-                  {...register("username")}
-                  placeholder="Enter Username"
-                ></Input>
-                <Show when={errors.username}>
-                  <Text color={"text-error"} whiteSpace="pre-line">
-                    {errors.username?.message}
-                  </Text>
-                </Show>
-              </Field>
-              <Field label="Password" paddingBottom={4} aria-required required>
-                <Input
-                  type="password"
-                  borderColor="borderColor.primary"
-                  {...register("password")}
-                  placeholder="Enter Password"
-                ></Input>
-                <Show when={errors.password}>
-                  <Text color={"text-error"} whiteSpace="pre-line">
-                    {errors.password?.message}
-                  </Text>
-                </Show>
-              </Field>
-              <Button color="primary" disabled={!isValid} type="submit">
-                Submit
-              </Button>
-            </Stack>
-          </form>
-        </Box>
-      </Center>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack>
+            <Heading size={"2xl"} paddingBottom={4}>
+              Register
+            </Heading>
+            <Field label="Username" paddingBottom={4} aria-required required>
+              <Input
+                type="text"
+                borderColor="borderColor.primary"
+                {...register("username")}
+                placeholder="Enter Username"
+              ></Input>
+              <Show when={errors.username}>
+                <Text color={"text-error"} whiteSpace="pre-line">
+                  {errors.username?.message}
+                </Text>
+              </Show>
+            </Field>
+            <Field label="Password" paddingBottom={4} aria-required required>
+              <Input
+                type="password"
+                borderColor="borderColor.primary"
+                {...register("password")}
+                placeholder="Enter Password"
+              ></Input>
+              <Show when={errors.password}>
+                <Text color={"text-error"} whiteSpace="pre-line">
+                  {errors.password?.message}
+                </Text>
+              </Show>
+            </Field>
+            <Button color="primary" disabled={!isValid} type="submit">
+              Submit
+            </Button>
+          </Stack>
+        </form>
+      </Box>
     </Flex>
   );
 };
