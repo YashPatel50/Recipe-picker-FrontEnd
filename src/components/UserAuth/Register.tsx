@@ -54,7 +54,7 @@ const Register = () => {
       align="flex-start" // Align to the top
       paddingTop="20vh"
     >
-      <Group>
+      <Group grow={true} width="80%" maxWidth={"600px"}>
         <Box
           background="gray.800"
           width="100%" // Responsive widths
@@ -94,8 +94,13 @@ const Register = () => {
                   </Text>
                 </Show>
               </Field>
-              <Button color="primary" disabled={!isValid} type="submit">
-                Submit
+              <Button
+                color="primary"
+                disabled={!isValid}
+                type="submit"
+                rounded={50}
+              >
+                Register
               </Button>
             </Stack>
           </form>
