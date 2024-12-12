@@ -52,12 +52,16 @@ const Register = () => {
       height="100vh"
       justify="center"
       align="flex-start" // Align to the top
-      paddingTop="20vh"
+      paddingTop="20vh" //So the form isn't perfectly centered
     >
-      <Group grow={true} width="80%" maxWidth={"600px"}>
+      <Group
+        grow={true}
+        width="80%" // Sets the width of the box
+        maxWidth={"600px"} //Sets the maximum width of the box
+      >
         <Box
           background="gray.800"
-          width="100%" // Responsive widths
+          width="100%"
           height="100%"
           padding={10}
           rounded={30}
