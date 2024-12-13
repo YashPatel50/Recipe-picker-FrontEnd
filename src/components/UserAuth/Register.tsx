@@ -10,23 +10,28 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
-import { Center } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
-  username: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/, {
-    message:
-      "Username must be 8-20 characters.\nAt least 1 Letter.\nAt least 1 Number.\nNo Special characters",
-  }),
-  password: z
-    .string()
-    .regex(/^(?=.*[A-Z])(?=.*[\W_])(?=.*\d)[A-Za-z\d\W_]{8,20}$/, {
+const schema = z
+  .object({
+    username: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/, {
       message:
-        "Password must be 8-20 characters.\nAt least 1 Letter.\nAt least 1 Number.\nAt least 1 Capital Letter.\nAt least 1 special character",
+        "Username must be 8-20 characters.\nAt least 1 Letter.\nAt least 1 Number.\nNo Special characters",
     }),
-});
+    password: z
+      .string()
+      .regex(/^(?=.*[A-Z])(?=.*[\W_])(?=.*\d)[A-Za-z\d\W_]{8,20}$/, {
+        message:
+          "Password must be 8-20 characters.\nAt least 1 Letter.\nAt least 1 Number.\nAt least 1 Capital Letter.\nAt least 1 special character",
+      }),
+    match_password: z.string(),
+  })
+  .refine((data) => data.password === data.match_password, {
+    message: "Passwords don't match",
+    path: ["match_password"],
+  });
 
 type LoginFormData = z.infer<typeof schema>;
 
@@ -95,6 +100,24 @@ const Register = () => {
                 <Show when={errors.password}>
                   <Text color={"text-error"} whiteSpace="pre-line">
                     {errors.password?.message}
+                  </Text>
+                </Show>
+              </Field>
+              <Field
+                label="Confirm Password"
+                paddingBottom={4}
+                aria-required
+                required
+              >
+                <Input
+                  type="password"
+                  borderColor="borderColor.primary"
+                  {...register("match_password")}
+                  placeholder="Enter Same Password"
+                ></Input>
+                <Show when={errors.match_password}>
+                  <Text color={"text-error"} whiteSpace="pre-line">
+                    {errors.match_password?.message}
                   </Text>
                 </Show>
               </Field>
