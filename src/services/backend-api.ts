@@ -1,6 +1,11 @@
 
 import axios from "axios";
 
-export default axios.create({
-    baseURL: "http://127.0.0.1:8000/",
-})
+// Service 1 instance
+const userService = axios.create({
+    baseURL: "http://127.0.0.1:8000/users/",
+    headers: { 'Content-Type': 'application/json' },
+});
+
+
+export {userService}

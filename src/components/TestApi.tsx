@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import backendClient from "../services/backend-api";
+import { userService } from "../services/backend-api";
 
 const TestApi = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    backendClient
+    userService
       .get("/recipes/")
       .then((res) => {
         console.log(res);

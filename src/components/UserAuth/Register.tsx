@@ -14,6 +14,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { userService } from "../../services/backend-api";
+
 const schema = z
   .object({
     username: z.string().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/, {
@@ -46,7 +48,14 @@ const Register = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
+    const controller = new AbortController();
+    userService
+      .post("/register/", data, { signal: controller.signal })
+      .then((res) => {
+        console.log("Success?", res);
+      })
+      .catch((err) => console.log(err));
     console.log(data);
     reset();
   };
